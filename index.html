@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BootspelAlpha</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Startscherm -->
-    <div id="startScreen">
-        <h1>BootspelAlpha - Instellingen</h1>
+<!-- Start scherm -->
+<div id="startScreen">
+    <h2>Start het Spel</h2>
+    <label for="numBoats">Aantal Boten:</label>
+    <input type="number" id="numBoats" min="1" max="25">
+    <br>
+    <label for="numClicks">Aantal Klikken:</label>
+    <input type="number" id="numClicks" min="1" max="25">
+    <br>
+    <button id="startGame">Start Spel</button> <!-- Startknop -->
+</div>
 
-        <label for="numBoats">Aantal boten (1-25):</label>
-        <input type="number" id="numBoats" min="1" max="25" value="4">
+<!-- Speelscherm -->
+<div id="gameScreen" style="display:none;">
+    <canvas id="raceCanvas"></canvas>
+    <div id="controls"></div>
+</div>
 
-        <label for="numClicks">Aantal klikken per boot (1-25):</label>
-        <input type="number" id="numClicks" min="1" max="25" value="10">
-
-        <!-- Startknop onderaan de invoervelden -->
-        <button id="startGame" class="start-btn">Start Spel</button>
-    </div>
-
-    <!-- Speelscherm -->
-    <div id="gameScreen" style="display: none;">
-        <canvas id="raceCanvas"></canvas>
-
-        <!-- Knoppen voor boten -->
-        <div class="controls" id="controls"></div>
-
-        <!-- Winnaar melding -->
-        <div id="winnerMessage" style="display: none;">
-            <h2 id="winnerText"></h2>
-            <button id="resetGame">Speel opnieuw</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<!-- Winnaar melding -->
+<div id="winnerMessage" style="display:none;">
+    <p id="winnerText"></p>
+    <button id="resetGame">Opnieuw Spelen</button>
+</div>
