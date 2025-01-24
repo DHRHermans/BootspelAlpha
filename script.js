@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (boats[i].x >= canvasWidth - 55 && !raceFinished) {
                 raceFinished = true;
                 winnerText.textContent = `Boot ${boats[i].number} heeft gewonnen!`;
-                winnerMessage.style.display = "block";
+                winnerMessage.style.display = "flex";  // Weergeven van de overlay
             }
         }
     }
