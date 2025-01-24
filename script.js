@@ -8,10 +8,10 @@ const canvasHeight = canvas.height;
 
 // Bootgegevens
 const boats = [
-    { x: 20, y: 50, width: 40, height: 20, color: "#ff0000", number: 1 }, // Rode boot
-    { x: 20, y: 120, width: 40, height: 20, color: "#00ff00", number: 2 }, // Groene boot
-    { x: 20, y: 190, width: 40, height: 20, color: "#0000ff", number: 3 }, // Blauwe boot
-    { x: 20, y: 260, width: 40, height: 20, color: "#ffff00", number: 4 }, // Gele boot
+    { x: 50, y: 50, width: 40, height: 20, color: "#ff0000", number: 1 }, // Rode boot
+    { x: 50, y: 120, width: 40, height: 20, color: "#00ff00", number: 2 }, // Groene boot
+    { x: 50, y: 190, width: 40, height: 20, color: "#0000ff", number: 3 }, // Blauwe boot
+    { x: 50, y: 260, width: 40, height: 20, color: "#ffff00", number: 4 }, // Gele boot
 ];
 
 // Functie om het speelveld te tekenen
@@ -51,8 +51,12 @@ function drawBoats() {
 
 // Functie om een boot te bewegen
 function moveBoat(boatIndex) {
-    boats[boatIndex].x += 10; // Beweeg de boot 10 pixels vooruit
-    drawField(); // Teken het speelveld opnieuw om de beweging te laten zien
+    if (boatIndex >= 0 && boatIndex < boats.length) {
+        boats[boatIndex].x += 10; // Beweeg de boot 10 pixels vooruit
+        drawField(); // Teken het speelveld opnieuw om de beweging te laten zien
+    } else {
+        console.error("Ongeldige bootindex:", boatIndex);
+    }
 }
 
 // Eventlisteners voor de knoppen
