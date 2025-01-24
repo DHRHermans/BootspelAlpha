@@ -2,6 +2,7 @@
 let numBoats = 2;
 let numClicks = 10;
 let boats = [];
+let boatImages = [];
 let canvas, ctx;
 let boatWidth = 50; // Breedte van de boten
 let boatHeight = 30; // Hoogte van de boten
@@ -89,6 +90,8 @@ document.getElementById('startGame').addEventListener('click', () => {
     numBoats = parseInt(document.getElementById('numBoats').value);
     numClicks = parseInt(document.getElementById('numClicks').value);
     boats = [];
+    
+    // Maak boten aan
     for (let i = 0; i < numBoats; i++) {
         boats.push({
             x: (canvas.width / (numBoats + 1)) * (i + 1), // Verspreid de boten horizontaal
@@ -98,7 +101,11 @@ document.getElementById('startGame').addEventListener('click', () => {
         });
         boats[i].image.src = `boat${i + 1}.png`; // Vervang dit met de werkelijke bootafbeeldingen
     }
-    startScreen.style.display = 'none'; // Verberg het startscherm
-    gameScreen.style.display = 'block'; // Toon het spel scherm
+
+    // Verberg het startscherm en toon het spel scherm
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('gameScreen').style.display = 'block';
+    
+    // Start het spel
     updateGame(); // Start de updatecyclus
 });
