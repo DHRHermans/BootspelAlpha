@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         ctx.fillStyle = "#000";
-        ctx.fillRect(50, 0, 5, canvasHeight);
-        ctx.fillRect(canvasWidth - 55, 0, 5, canvasHeight);
+        ctx.fillRect(50, 0, 5, canvasHeight);  // Startlijn
+        ctx.fillRect(canvasWidth - 55, 0, 5, canvasHeight);  // Finishlijn
 
         drawBoats();
     }
@@ -43,11 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
             ctx.textBaseline = "middle";
             ctx.fillText(boat.number, centerX, centerY);
 
-            // Voeg het aantal resterende stappen naast de boot toe
-            const stepsElement = document.getElementById(`steps-${boat.number}`);
-            if (stepsElement) {
-                stepsElement.textContent = `Stappen over: ${clicksRemaining[index]}`;
-            }
+            // Voeg het aantal resterende stappen direct naast de boot toe
+            ctx.font = "14px Arial";
+            ctx.fillText(`Stappen: ${clicksRemaining[index]}`, centerX, centerY + 25);
         });
     }
 
@@ -56,16 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (clicksRemaining[boatIndex] > 0 && !raceFinished) {
             boats[boatIndex].x += (canvasWidth - 100) / numClicks;
             clicksRemaining[boatIndex]--;
-            updateStepCount(boatIndex);
             drawField();
             checkForWinner();
         }
-    }
-
-    // Functie om het aantal resterende stappen bij te werken
-    function updateStepCount(boatIndex) {
-        const stepsElement = document.getElementById(`steps-${boatIndex}`);
-        stepsElement.textContent = `Stappen over: ${clicksRemaining[boatIndex]}`;
     }
 
     // Functie om de winnaar te controleren
@@ -119,16 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
             btn.textContent = boat.number;
             btn.addEventListener("click", () => moveBoat(i));
 
-            // Voeg het aantal stappen toe naast de boot
-            const stepsElement = document.createElement("div");
-            stepsElement.id = `steps-${boat.number}`;
-            stepsElement.classList.add("boat-info");
-            stepsElement.textContent = `Stappen over: ${clicksRemaining[i]}`;
-
-            const btnContainer = document.createElement("div");
-            btnContainer.appendChild(btn);
-            controlsDiv.appendChild(stepsElement);
-            controlsDiv.appendChild(btnContainer);
+            controlsDiv.appendChild(btn);
         }
 
         drawField();
