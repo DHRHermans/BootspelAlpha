@@ -90,10 +90,12 @@ document.addEventListener("DOMContentLoaded", function() {
         controlsDiv.innerHTML = "";
         raceFinished = false;
 
+        const verticalSpacing = Math.max(50, canvasHeight / numBoats); // Bereken de verticale ruimte
+
         for (let i = 0; i < numBoats; i++) {
             const boat = {
                 x: 50,
-                y: 50 + (i * 50),
+                y: 50 + (i * verticalSpacing), // Dynamisch gepositioneerd
                 width: 40,
                 height: 20,
                 color: getRandomColor(),
