@@ -1,84 +1,38 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f8ff;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    color: #333;
-    text-transform: uppercase;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-#startScreen {
-    text-align: center;
-    padding: 20px;
-}
-
-#gameScreen {
-    text-align: center;
-}
-
-canvas {
-    border: 2px solid #000;
-    background-color: #add8e6;
-}
-
-.controls {
-    margin-top: 20px;
-}
-
-button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    width: 150px;
-    text-align: center;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-label {
-    margin-right: 10px;
-    margin-top: 10px;
-}
-
-.start-btn {
-    margin-top: 20px;
-    width: 200px; /* Knop breder maken */
-    font-size: 18px;
-}
-
 #winnerMessage {
-    margin-top: 20px;
+    display: none;  /* Begin als verborgen */
+    position: fixed; /* Maak het een overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* Donkere achtergrond voor overlay */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+    z-index: 10;  /* Zorg ervoor dat het bovenop de canvas komt */
+}
+
+#winnerText {
+    background-color: rgba(0, 0, 0, 0.7);  /* Nog een donkerdere achtergrond voor het tekstvak */
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 32px;
+    text-align: center;
 }
 
 #resetGame {
-    background-color: #f44336;
-    width: 200px;
+    margin-top: 20px;
+    padding: 10px 20px;
     font-size: 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
 #resetGame:hover {
-    background-color: #d32f2f;
-}
-
-/* Extra stijl voor het aantal resterende stappen */
-.step-count {
-    font-size: 14px;
-    color: #333;
-    margin-top: 5px;
+    background-color: #0056b3;
 }
