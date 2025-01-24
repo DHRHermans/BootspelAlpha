@@ -1,23 +1,38 @@
-<!-- Start scherm -->
-<div id="startScreen">
-    <h2>Start het Spel</h2>
-    <label for="numBoats">Aantal Boten:</label>
-    <input type="number" id="numBoats" min="1" max="25">
-    <br>
-    <label for="numClicks">Aantal Klikken:</label>
-    <input type="number" id="numClicks" min="1" max="25">
-    <br>
-    <button id="startGame">Start Spel</button> <!-- Startknop -->
-</div>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootrace Spel</title>
+    <style>
+        /* Voeg hier je styling toe */
+    </style>
+</head>
+<body>
+    <!-- Start scherm -->
+    <div id="startScreen">
+        <h2>Start het Spel</h2>
+        <label for="numBoats">Aantal Boten:</label>
+        <input type="number" id="numBoats" min="1" max="25">
+        <br>
+        <label for="numClicks">Aantal Klikken:</label>
+        <input type="number" id="numClicks" min="1" max="25">
+        <br>
+        <button id="startGame">Start Spel</button> <!-- Startknop -->
+    </div>
 
-<!-- Speelscherm -->
-<div id="gameScreen" style="display:none;">
-    <canvas id="raceCanvas"></canvas>
-    <div id="controls"></div>
-</div>
+    <!-- Speelscherm -->
+    <div id="gameScreen" style="display:none;">
+        <canvas id="raceCanvas"></canvas>
+        <div id="controls"></div>
+    </div>
 
-<!-- Winnaar melding -->
-<div id="winnerMessage" style="display:none;">
-    <p id="winnerText"></p>
-    <button id="resetGame">Opnieuw Spelen</button>
-</div>
+    <!-- Winnaar melding -->
+    <div id="winnerMessage" style="display:none;">
+        <p id="winnerText"></p>
+        <button id="resetGame">Opnieuw Spelen</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
