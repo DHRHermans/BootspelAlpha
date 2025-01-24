@@ -2,7 +2,6 @@
 let numBoats = 2;
 let numClicks = 10;
 let boats = [];
-let boatImages = [];
 let canvas, ctx;
 let boatWidth = 50; // Breedte van de boten
 let boatHeight = 30; // Hoogte van de boten
@@ -92,8 +91,8 @@ document.getElementById('startGame').addEventListener('click', () => {
     boats = [];
     for (let i = 0; i < numBoats; i++) {
         boats.push({
-            x: (canvas.width / (numBoats + 1)) * (i + 1), // Verspreid de boten
-            y: canvas.height - 100, // Alle boten beginnen onderaan
+            x: (canvas.width / (numBoats + 1)) * (i + 1), // Verspreid de boten horizontaal
+            y: canvas.height - 100, // Alle boten beginnen onderaan (dicht bij de onderkant van het scherm)
             steps: Array(numClicks).fill(1), // Aantal stappen per boot
             image: new Image()
         });
