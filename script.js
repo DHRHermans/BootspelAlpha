@@ -2,19 +2,21 @@
 const canvas = document.getElementById("raceCanvas");
 const ctx = canvas.getContext("2d");
 
-// Canvasbreedte en -hoogte
-const canvasWidth = canvas.width;
-const canvasHeight = canvas.height;
-
 // Deel van de interface voor de start en het spel
 const startScreen = document.getElementById("startScreen");
 const gameScreen = document.getElementById("gameScreen");
 const controlsDiv = document.getElementById("controls");
+const winnerMessage = document.getElementById("winnerMessage");
+const winnerText = document.getElementById("winnerText");
+const resetGameButton = document.getElementById("resetGame");
 
 let boats = [];
 let numClicks = 0;
 let numBoats = 0;
 let clicksRemaining = [];
+let canvasHeight = 0;
+let canvasWidth = 0;
+let raceFinished = false;  // Vlag die bijhoudt of de race is afgelopen
 
 // Functie om het speelveld te tekenen
 function drawField() {
@@ -53,10 +55,23 @@ function drawBoats() {
 
 // Functie om een boot te bewegen
 function moveBoat(boatIndex) {
-    if (clicksRemaining[boatIndex] > 0) {
+    if (clicksRemaining[boatIndex] > 0 && !raceFinished) {
         boats[boatIndex].x += (canvasWidth - 100) / numClicks;
         clicksRemaining[boatIndex]--;
         drawField(); // Teken het speelveld opnieuw om de beweging te laten zien
+        checkForWinner(); // Controleer of er een winnaar is
+    }
+}
+
+// Functie om de winnaar te controleren
+function checkForWinner() {
+    // Kijk of er een boot voorbij de finishlijn is
+    for (let i = 0; i < boats.length; i++) {
+        if (boats[i].x >= canvasWidth - 55 && !raceFinished) {
+            raceFinished = true; // Markeer de race als beëindigd
+            winnerText.textContent = `Boot ${boats[i].number} heeft gewonnen!`; // Toon de winnaar
+            winnerMessage.style.display = "block"; // Toon de winnaar melding
+        }
     }
 }
 
@@ -64,6 +79,12 @@ function moveBoat(boatIndex) {
 function startGame() {
     numBoats = parseInt(document.getElementById("numBoats").value);
     numClicks = parseInt(document.getElementById("numClicks").value);
+
+    // Dynamisch de canvasgrootte instellen
+    canvasHeight = numBoats * 50 + 50; // Zorg ervoor dat de boten niet overlappen
+    canvasWidth = 800; // Breedte blijft gelijk
+    canvas.height = canvasHeight;
+    canvas.width = canvasWidth;
 
     // Verberg het startscherm en toon het speelscherm
     startScreen.style.display = "none";
@@ -73,6 +94,7 @@ function startGame() {
     boats = [];
     clicksRemaining = [];
     controlsDiv.innerHTML = ""; // Maak de knoppen leeg
+    raceFinished = false; // Reset de vlag voor het einde van de race
 
     // Maak de boten
     for (let i = 0; i < numBoats; i++) {
@@ -109,3 +131,10 @@ function getRandomColor() {
 
 // Eventlistener voor de startknop
 document.getElementById("startGame").addEventListener("click", startGame);
+
+// Eventlistener voor de resetknop
+resetGameButton.addEventListener("click", function() {
+    startScreen.style.display = "block";
+    gameScreen.style.display = "none";
+    winnerMessage.style.display = "none"; // Verberg de winnaar melding
+});
