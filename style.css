@@ -1,1 +1,20 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff; /* Lichtblauwe achtergrond voor de pagina */
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+canvas {
+    border: 2px solid #000;
+    background-color: #add8e6; /* Lichtblauwe achtergrond voor het water */
+}
 
