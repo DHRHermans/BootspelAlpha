@@ -1,3 +1,4 @@
+/* Voeg hier je aangepaste CSS in */
 #winnerMessage {
     display: none;  /* Begin als verborgen */
     position: fixed; /* Maak het een overlay */
@@ -46,20 +47,34 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden;  /* Verhindert dat er scrollbars verschijnen als het canvas groter is dan het scherm */
 }
 
 canvas {
     border: 2px solid #000;
+    display: block;  /* Verhindert dat het canvas wordt uitgerekt of vertekend */
+    margin: 0 auto;
 }
 
 .controls {
     margin-top: 20px;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Zorgt ervoor dat de knoppen naast elkaar of onder elkaar worden weergegeven */
+    justify-content: center;
 }
 
 .controls button {
-    margin-right: 10px;
+    margin: 5px;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
 }
