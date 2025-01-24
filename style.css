@@ -16,6 +16,14 @@ h1 {
     margin-bottom: 20px;
 }
 
+#startScreen {
+    text-align: center;
+}
+
+#gameScreen {
+    text-align: center;
+}
+
 canvas {
     border: 2px solid #000;
     background-color: #add8e6;
@@ -34,10 +42,15 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
-    width: 50px; /* Breedte aanpassen zodat de knop het nummer toont */
+    width: 50px;
     text-align: center;
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+label {
+    margin-right: 10px;
+    margin-top: 10px;
 }
