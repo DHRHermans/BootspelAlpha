@@ -6,13 +6,15 @@ const ctx = canvas.getContext("2d");
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 
-// Bootgegevens
-const boats = [
-    { x: 50, y: 50, width: 40, height: 20, color: "#ff0000", number: 1 }, // Rode boot
-    { x: 50, y: 120, width: 40, height: 20, color: "#00ff00", number: 2 }, // Groene boot
-    { x: 50, y: 190, width: 40, height: 20, color: "#0000ff", number: 3 }, // Blauwe boot
-    { x: 50, y: 260, width: 40, height: 20, color: "#ffff00", number: 4 }, // Gele boot
-];
+// Deel van de interface voor de start en het spel
+const startScreen = document.getElementById("startScreen");
+const gameScreen = document.getElementById("gameScreen");
+const controlsDiv = document.getElementById("controls");
+
+let boats = [];
+let numClicks = 0;
+let numBoats = 0;
+let clicksRemaining = [];
 
 // Functie om het speelveld te tekenen
 function drawField() {
@@ -33,7 +35,7 @@ function drawField() {
 
 // Functie om boten te tekenen
 function drawBoats() {
-    boats.forEach((boat) => {
+    boats.forEach((boat, index) => {
         // Teken de boot
         ctx.fillStyle = boat.color;
         ctx.fillRect(boat.x, boat.y, boat.width, boat.height);
@@ -51,19 +53,59 @@ function drawBoats() {
 
 // Functie om een boot te bewegen
 function moveBoat(boatIndex) {
-    if (boatIndex >= 0 && boatIndex < boats.length) {
-        boats[boatIndex].x += 10; // Beweeg de boot 10 pixels vooruit
+    if (clicksRemaining[boatIndex] > 0) {
+        boats[boatIndex].x += (canvasWidth - 100) / numClicks;
+        clicksRemaining[boatIndex]--;
         drawField(); // Teken het speelveld opnieuw om de beweging te laten zien
-    } else {
-        console.error("Ongeldige bootindex:", boatIndex);
     }
 }
 
-// Eventlisteners voor de knoppen
-document.getElementById("moveBoat1").addEventListener("click", () => moveBoat(0));
-document.getElementById("moveBoat2").addEventListener("click", () => moveBoat(1));
-document.getElementById("moveBoat3").addEventListener("click", () => moveBoat(2));
-document.getElementById("moveBoat4").addEventListener("click", () => moveBoat(3));
+// Start het spel met de instellingen
+function startGame() {
+    numBoats = parseInt(document.getElementById("numBoats").value);
+    numClicks = parseInt(document.getElementById("numClicks").value);
 
-// Teken het speelveld bij het laden
-drawField();
+    // Verberg het startscherm en toon het speelscherm
+    startScreen.style.display = "none";
+    gameScreen.style.display = "block";
+
+    // Reset de boten en hun instellingen
+    boats = [];
+    clicksRemaining = [];
+    controlsDiv.innerHTML = ""; // Maak de knoppen leeg
+
+    // Maak de boten
+    for (let i = 0; i < numBoats; i++) {
+        const boat = {
+            x: 50,
+            y: 50 + (i * 50), // Zorg ervoor dat de boten niet overlappen
+            width: 40,
+            height: 20,
+            color: getRandomColor(),
+            number: i + 1
+        };
+        boats.push(boat);
+        clicksRemaining.push(numClicks); // Zet het aantal klikken per boot
+
+        // Maak knoppen voor elke boot
+        const btn = document.createElement("button");
+        btn.textContent = i + 1; // Nummer van de boot
+        btn.addEventListener("click", () => moveBoat(i));
+        controlsDiv.appendChild(btn);
+    }
+
+    drawField(); // Teken het speelveld bij het starten
+}
+
+// Genereer een willekeurige kleur voor elke boot
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Eventlistener voor de startknop
+document.getElementById("startGame").addEventListener("click", startGame);
