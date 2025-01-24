@@ -110,3 +110,47 @@ function startGame() {
             y: 50 + (i * 50), // Zorg ervoor dat de boten niet overlappen
             width: 40,
             height: 20,
+            color: getRandomColor(),
+            number: i + 1
+        };
+        boats.push(boat);
+        clicksRemaining.push(numClicks); // Zet het aantal klikken per boot
+
+        // Maak knoppen voor elke boot
+        const btnContainer = document.createElement("div");
+        
+        const btn = document.createElement("button");
+        btn.textContent = i + 1; // Nummer van de boot
+        btn.addEventListener("click", () => moveBoat(i));
+        
+        const stepsDisplay = document.createElement("span");
+        stepsDisplay.id = `steps-${i}`;
+        stepsDisplay.textContent = `Stappen over: ${clicksRemaining[i]}`;
+
+        btnContainer.appendChild(btn);
+        btnContainer.appendChild(stepsDisplay);
+        controlsDiv.appendChild(btnContainer);
+    }
+
+    drawField(); // Teken het speelveld bij het starten
+}
+
+// Genereer een willekeurige kleur voor elke boot
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Eventlistener voor de startknop
+document.getElementById("startGame").addEventListener("click", startGame);
+
+// Eventlistener voor de resetknop
+resetGameButton.addEventListener("click", function() {
+    startScreen.style.display = "block";
+    gameScreen.style.display = "none";
+    winnerMessage.style.display = "none"; // Verberg de winnaar melding
+});
