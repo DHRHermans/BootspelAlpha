@@ -84,8 +84,15 @@ function checkForWinner() {
 
 // Start het spel met de instellingen
 function startGame() {
+    // Verkrijg de waarden van de invoervelden
     numBoats = parseInt(document.getElementById("numBoats").value);
     numClicks = parseInt(document.getElementById("numClicks").value);
+
+    // Controleer of de waarden geldig zijn
+    if (isNaN(numBoats) || isNaN(numClicks) || numBoats < 1 || numBoats > 25 || numClicks < 1 || numClicks > 25) {
+        alert("Vul geldige waarden in voor het aantal boten en klikken.");
+        return;
+    }
 
     // Dynamisch de canvasgrootte instellen
     canvasHeight = numBoats * 50 + 50; // Zorg ervoor dat de boten niet overlappen
@@ -120,7 +127,7 @@ function startGame() {
         const btnContainer = document.createElement("div");
         
         const btn = document.createElement("button");
-        btn.textContent = i + 1; // Nummer van de boot
+        btn.textContent = `Beweeg Boot ${i + 1}`; // Nummer van de boot
         btn.addEventListener("click", () => moveBoat(i));
         
         const stepsDisplay = document.createElement("span");
