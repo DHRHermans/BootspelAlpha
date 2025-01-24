@@ -21,7 +21,7 @@ function drawField() {
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     // Startlijn
-    ctx.fillStyle = "#000"; // Zwart
+    ctx.fillStyle = "#000";
     ctx.fillRect(50, 0, 5, canvasHeight);
 
     // Finishlijn
@@ -35,8 +35,8 @@ function drawField() {
 function drawBoats() {
     boats.forEach((boat) => {
         // Teken de boot
-        ctx.fillStyle = boat.color; // Stel de kleur in
-        ctx.fillRect(boat.x, boat.y, boat.width, boat.height); // Rechthoek voor de boot
+        ctx.fillStyle = boat.color;
+        ctx.fillRect(boat.x, boat.y, boat.width, boat.height);
 
         // Teken het nummer op de boot
         ctx.fillStyle = "#000"; // Zwart voor tekst
@@ -49,5 +49,17 @@ function drawBoats() {
     });
 }
 
-// Teken het speelveld
+// Functie om een boot te bewegen
+function moveBoat(boatIndex) {
+    boats[boatIndex].x += 10; // Beweeg de boot 10 pixels vooruit
+    drawField(); // Teken het speelveld opnieuw om de beweging te laten zien
+}
+
+// Eventlisteners voor de knoppen
+document.getElementById("moveBoat1").addEventListener("click", () => moveBoat(0));
+document.getElementById("moveBoat2").addEventListener("click", () => moveBoat(1));
+document.getElementById("moveBoat3").addEventListener("click", () => moveBoat(2));
+document.getElementById("moveBoat4").addEventListener("click", () => moveBoat(3));
+
+// Teken het speelveld bij het laden
 drawField();
