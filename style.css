@@ -11,10 +11,12 @@ body {
 
 h1 {
     color: #333;
+    text-transform: uppercase; /* Spelnaam in hoofdletters */
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 canvas {
     border: 2px solid #000;
     background-color: #add8e6; /* Lichtblauwe achtergrond voor het water */
 }
-
