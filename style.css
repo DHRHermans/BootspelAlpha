@@ -75,3 +75,10 @@ label {
 #resetGame:hover {
     background-color: #d32f2f;
 }
+
+/* Extra stijl voor het aantal resterende stappen */
+.step-count {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+}
