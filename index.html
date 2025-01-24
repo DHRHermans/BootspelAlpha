@@ -3,33 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boot Race Spel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Boot Race</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #startScreen, #gameScreen, #winnerMessage {
+            display: none;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #winnerMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Startscherm -->
     <div id="startScreen">
-        <h1>Boot Race Spel</h1>
-        <label for="numBoats">Aantal boten (1-25): </label>
-        <input type="number" id="numBoats" min="1" max="25" value="2">
-        <br>
-        <label for="numClicks">Aantal klikken per boot (1-25): </label>
-        <input type="number" id="numClicks" min="1" max="25" value="10">
-        <br><br>
-        <button id="startGame">Start Spel</button>
+        <h1>Boot Race</h1>
+        <label for="numBoats">Aantal boten (1-25):</label>
+        <input type="number" id="numBoats" min="1" max="25" value="2"><br><br>
+        <label for="numClicks">Aantal kliks per boot (1-25):</label>
+        <input type="number" id="numClicks" min="1" max="25" value="10"><br><br>
+        <button id="startGame">Start Game</button>
     </div>
 
-    <!-- Spelscherm -->
     <div id="gameScreen">
         <canvas id="raceCanvas"></canvas>
-        <div id="controls" class="controls"></div>
+        <div id="controls"></div>
     </div>
 
-    <!-- Winnaars scherm -->
     <div id="winnerMessage">
-        <div id="winnerText"></div>
-        <button id="resetGame">Reset Spel</button>
+        <h2 id="winnerText"></h2>
+        <button id="resetGame">Reset</button>
     </div>
 
     <script src="script.js"></script>
