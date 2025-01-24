@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>BootspelAlpha</h1>
-    <canvas id="raceCanvas" width="800" height="400"></canvas>
+    <!-- Startscherm -->
+    <div id="startScreen">
+        <h1>BootspelAlpha - Instellingen</h1>
 
-    <!-- Knoppen -->
-    <div class="controls">
-        <button id="moveBoat1">1</button>
-        <button id="moveBoat2">2</button>
-        <button id="moveBoat3">3</button>
-        <button id="moveBoat4">4</button>
+        <label for="numBoats">Aantal boten (1-25):</label>
+        <input type="number" id="numBoats" min="1" max="25" value="4">
+
+        <label for="numClicks">Aantal klikken per boot (1-25):</label>
+        <input type="number" id="numClicks" min="1" max="25" value="10">
+
+        <button id="startGame">Start Spel</button>
+    </div>
+
+    <!-- Speelscherm -->
+    <div id="gameScreen" style="display: none;">
+        <canvas id="raceCanvas" width="800" height="400"></canvas>
+
+        <!-- Knoppen voor boten -->
+        <div class="controls" id="controls"></div>
     </div>
 
     <script src="script.js"></script>
