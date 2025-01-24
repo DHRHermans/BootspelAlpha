@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Functie om het speelveld te tekenen
     function drawField() {
         ctx.fillStyle = "#add8e6";
-        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);  // Vul de achtergrond met blauw
 
         ctx.fillStyle = "#000";
         ctx.fillRect(0, canvasHeight - 50, canvasWidth, 5);  // Startlijn (onderaan)
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Functie om een boot te bewegen
     function moveBoat(boatIndex) {
         if (!raceFinished) {
-            boats[boatIndex].y -= (canvasHeight - 100) / numClicks;  // Boten bewegen naar boven
+            boats[boatIndex].y -= (canvasHeight - 100) / numClicks;  // Boten bewegen naar boven (y-as)
             clicksRemaining[boatIndex]--;
             drawField();
             checkForWinner();
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Functie om de winnaar te controleren
     function checkForWinner() {
         for (let i = 0; i < boats.length; i++) {
-            if (boats[i].y <= 5 && !raceFinished) {  // Als de boot de finishlijn bereikt
+            if (boats[i].y <= 5 && !raceFinished) {  // Als de boot de finishlijn bereikt (bovenaan)
                 raceFinished = true;
                 winnerText.textContent = `Boot ${boats[i].number} heeft gewonnen!`;
                 winnerMessage.style.display = "flex";  // Weergeven van de overlay
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for (let i = 0; i < numBoats; i++) {
             const boat = {
-                x: canvasWidth / 2 - 20,  // Plaats de boten in het midden
-                y: canvasHeight - (i + 1) * verticalSpacing,  // Begin onderaan
+                x: canvasWidth / 2 - 20,  // Plaats de boten in het midden (horizontaal)
+                y: canvasHeight - (i + 1) * verticalSpacing,  // Begin onderaan het canvas
                 width: 40,
                 height: 20,
                 color: getRandomColor(),
