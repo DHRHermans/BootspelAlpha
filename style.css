@@ -5,7 +5,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f8ff; /* Lichtblauwe achtergrond voor de pagina */
+    background-color: #f0f8ff;
     font-family: Arial, sans-serif;
 }
 
@@ -34,6 +34,8 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
+    width: 50px; /* Breedte aanpassen zodat de knop het nummer toont */
+    text-align: center;
 }
 
 button:hover {
