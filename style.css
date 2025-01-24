@@ -37,3 +37,29 @@
 #resetGame:hover {
     background-color: #0056b3;
 }
+
+#startScreen, #gameScreen {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    border: 2px solid #000;
+}
+
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.controls button {
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
