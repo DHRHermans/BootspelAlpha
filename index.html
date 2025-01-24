@@ -5,7 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootrace Spel</title>
     <style>
-        /* Voeg hier je styling toe */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f8ff; /* Lichtblauwe achtergrond */
+        }
+
+        #startScreen, #gameScreen, #winnerMessage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Start scherm */
+        #startScreen input, #startScreen button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #gameScreen {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Canvas wordt volledig schermvullend */
+        canvas {
+            width: 100%;
+            height: 80%;
+            background-color: #add8e6; /* Lichte blauwe achtergrond voor het water */
+        }
+
+        /* Boten knoppen naast elkaar */
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        #controls button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        #controls button:hover {
+            background-color: #45a049;
+        }
+
+        /* Stappen tekst naast de boot */
+        .boat-info {
+            font-size: 16px;
+            color: black;
+            position: absolute;
+        }
+
+        #winnerMessage {
+            display: none;
+            text-align: center;
+        }
+
+        #resetGame {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #resetGame:hover {
+            background-color: #e53935;
+        }
     </style>
 </head>
 <body>
@@ -22,13 +107,13 @@
     </div>
 
     <!-- Speelscherm -->
-    <div id="gameScreen" style="display:none;">
+    <div id="gameScreen">
         <canvas id="raceCanvas"></canvas>
         <div id="controls"></div>
     </div>
 
     <!-- Winnaar melding -->
-    <div id="winnerMessage" style="display:none;">
+    <div id="winnerMessage">
         <p id="winnerText"></p>
         <button id="resetGame">Opnieuw Spelen</button>
     </div>
