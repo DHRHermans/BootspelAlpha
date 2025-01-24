@@ -3,119 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootrace Spel</title>
+    <title>Boot Race Spel</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f0f8ff; /* Lichtblauwe achtergrond */
-        }
-
-        #startScreen, #gameScreen, #winnerMessage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        /* Start scherm */
-        #startScreen input, #startScreen button {
-            margin: 5px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        #gameScreen {
-            display: none;
-            width: 100%;
-            height: 100vh;
-            position: relative;
-        }
-
-        /* Canvas wordt volledig schermvullend */
-        canvas {
-            width: 100%;
-            height: 80%;
-            background-color: #add8e6; /* Lichte blauwe achtergrond voor het water */
-        }
-
-        /* Boten knoppen naast elkaar */
-        #controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        #controls button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-        }
-
-        #controls button:hover {
-            background-color: #45a049;
-        }
-
-        /* Stappen tekst naast de boot */
-        .boat-info {
-            font-size: 16px;
-            color: black;
-            position: absolute;
-        }
-
+        /* Voeg hier je aangepaste CSS in */
         #winnerMessage {
-            display: none;
+            display: none;  /* Begin als verborgen */
+            position: fixed; /* Maak het een overlay */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);  /* Donkere achtergrond voor overlay */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-align: center;
+            z-index: 10;  /* Zorg ervoor dat het bovenop de canvas komt */
+        }
+
+        #winnerText {
+            background-color: rgba(0, 0, 0, 0.7);  /* Nog een donkerdere achtergrond voor het tekstvak */
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 32px;
             text-align: center;
         }
 
         #resetGame {
+            margin-top: 20px;
             padding: 10px 20px;
-            font-size: 16px;
-            background-color: #f44336;
+            font-size: 18px;
+            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
         }
 
         #resetGame:hover {
-            background-color: #e53935;
+            background-color: #0056b3;
+        }
+
+        #startScreen, #gameScreen {
+            display: none;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 2px solid #000;
+        }
+
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .controls button {
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Start scherm -->
+
+    <!-- Startscherm -->
     <div id="startScreen">
-        <h2>Start het Spel</h2>
-        <label for="numBoats">Aantal Boten:</label>
-        <input type="number" id="numBoats" min="1" max="25">
+        <h1>Boot Race Spel</h1>
+        <label for="numBoats">Aantal boten (1-25): </label>
+        <input type="number" id="numBoats" min="1" max="25" value="2">
         <br>
-        <label for="numClicks">Aantal Klikken:</label>
-        <input type="number" id="numClicks" min="1" max="25">
-        <br>
-        <button id="startGame">Start Spel</button> <!-- Startknop -->
+        <label for="numClicks">Aantal klikken per boot (1-25): </label>
+        <input type="number" id="numClicks" min="1" max="25" value="10">
+        <br><br>
+        <button id="startGame">Start Spel</button>
     </div>
 
-    <!-- Speelscherm -->
+    <!-- Spelscherm -->
     <div id="gameScreen">
         <canvas id="raceCanvas"></canvas>
-        <div id="controls"></div>
+        <div id="controls" class="controls"></div>
     </div>
 
-    <!-- Winnaar melding -->
+    <!-- Winnaars scherm -->
     <div id="winnerMessage">
-        <p id="winnerText"></p>
-        <button id="resetGame">Opnieuw Spelen</button>
+        <div id="winnerText"></div>
+        <button id="resetGame">Reset Spel</button>
     </div>
 
     <script src="script.js"></script>
