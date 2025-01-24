@@ -23,10 +23,16 @@
 
     <!-- Speelscherm -->
     <div id="gameScreen" style="display: none;">
-        <canvas id="raceCanvas" width="800" height="400"></canvas>
+        <canvas id="raceCanvas"></canvas>
 
         <!-- Knoppen voor boten -->
         <div class="controls" id="controls"></div>
+
+        <!-- Winnaar melding -->
+        <div id="winnerMessage" style="display: none;">
+            <h2 id="winnerText"></h2>
+            <button id="resetGame">Speel opnieuw</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
