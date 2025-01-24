@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const btnContainer = document.createElement("div");
             btnContainer.appendChild(btn);
-            btnContainer.appendChild(stepsElement);
+            controlsDiv.appendChild(stepsElement);
             controlsDiv.appendChild(btnContainer);
         }
 
