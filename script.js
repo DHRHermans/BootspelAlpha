@@ -84,6 +84,7 @@ function checkForWinner() {
 
 // Start het spel met de instellingen
 function startGame() {
+    console.log("Start Game Klik Gedetecteerd!");  // Debug log
     // Verkrijg de waarden van de invoervelden
     numBoats = parseInt(document.getElementById("numBoats").value);
     numClicks = parseInt(document.getElementById("numClicks").value);
@@ -154,6 +155,7 @@ function getRandomColor() {
 
 // Eventlistener voor de startknop
 document.getElementById("startGame").addEventListener("click", startGame);
+console.log("Start Game Event Listener toegekend!");  // Debug log
 
 // Eventlistener voor de resetknop
 resetGameButton.addEventListener("click", function() {
