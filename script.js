@@ -21,7 +21,7 @@ function drawField() {
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     // Startlijn
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#000"; // Zwart
     ctx.fillRect(50, 0, 5, canvasHeight);
 
     // Finishlijn
@@ -35,19 +35,19 @@ function drawField() {
 function drawBoats() {
     boats.forEach((boat) => {
         // Teken de boot
-        ctx.fillStyle = boat.color;
-        ctx.fillRect(boat.x, boat.y, boat.width, boat.height);
+        ctx.fillStyle = boat.color; // Stel de kleur in
+        ctx.fillRect(boat.x, boat.y, boat.width, boat.height); // Rechthoek voor de boot
 
-        // Teken het nummer
-        ctx.fillStyle = "#000"; // Zwarte kleur voor het nummer
+        // Teken het nummer op de boot
+        ctx.fillStyle = "#000"; // Zwart voor tekst
         ctx.font = "16px Arial"; // Tekengrootte en stijl
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         const centerX = boat.x + boat.width / 2; // Horizontaal midden
         const centerY = boat.y + boat.height / 2; // Verticaal midden
-        ctx.fillText(boat.number, centerX, centerY);
+        ctx.fillText(boat.number, centerX, centerY); // Teken het nummer
     });
 }
 
-// Teken het speelveld bij het laden
+// Teken het speelveld
 drawField();
