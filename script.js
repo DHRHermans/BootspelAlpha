@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
         ctx.fillStyle = "#000";
-        ctx.fillRect(50, 0, 5, canvasHeight);  // Startlijn
-        ctx.fillRect(canvasWidth - 55, 0, 5, canvasHeight);  // Finishlijn
+        ctx.fillRect(0, canvasHeight - 50, canvasWidth, 5);  // Startlijn (onderaan)
+        ctx.fillRect(0, 0, canvasWidth, 5);  // Finishlijn (bovenaan)
 
         drawBoats();
     }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Functie om een boot te bewegen
     function moveBoat(boatIndex) {
         if (!raceFinished) {
-            boats[boatIndex].x += (canvasWidth - 100) / numClicks;
+            boats[boatIndex].y -= (canvasHeight - 100) / numClicks;  // Boten bewegen naar boven
             clicksRemaining[boatIndex]--;
             drawField();
             checkForWinner();
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Functie om de winnaar te controleren
     function checkForWinner() {
         for (let i = 0; i < boats.length; i++) {
-            if (boats[i].x >= canvasWidth - 55 && !raceFinished) {
+            if (boats[i].y <= 5 && !raceFinished) {  // Als de boot de finishlijn bereikt
                 raceFinished = true;
                 winnerText.textContent = `Boot ${boats[i].number} heeft gewonnen!`;
                 winnerMessage.style.display = "flex";  // Weergeven van de overlay
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for (let i = 0; i < numBoats; i++) {
             const boat = {
-                x: 50,
-                y: 50 + (i * verticalSpacing), // Dynamisch gepositioneerd
+                x: canvasWidth / 2 - 20,  // Plaats de boten in het midden
+                y: canvasHeight - (i + 1) * verticalSpacing,  // Begin onderaan
                 width: 40,
                 height: 20,
                 color: getRandomColor(),
