@@ -1,6 +1,7 @@
+/* Het winnaars scherm krijgt een vaste positie over het hele canvas */
 #winnerMessage {
     display: none;  /* Begin als verborgen */
-    position: fixed; /* Maak het een overlay */
+    position: absolute; /* Zorgt ervoor dat het over het canvas komt */
     top: 0;
     left: 0;
     width: 100%;
@@ -33,6 +34,21 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 #resetGame:hover {
     background-color: #0056b3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Zorg ervoor dat er geen scrollbars verschijnen */
+}
+
+canvas {
+    border: 2px solid #000;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
