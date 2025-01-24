@@ -61,3 +61,17 @@ label {
     width: 200px; /* Knop breder maken */
     font-size: 18px;
 }
+
+#winnerMessage {
+    margin-top: 20px;
+}
+
+#resetGame {
+    background-color: #f44336;
+    width: 200px;
+    font-size: 18px;
+}
+
+#resetGame:hover {
+    background-color: #d32f2f;
+}
