@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Functie om boten te tekenen
     function drawBoats() {
-        boats.forEach((boat, index) => {
+        boats.forEach((boat) => {
             ctx.fillStyle = boat.color;
             ctx.fillRect(boat.x, boat.y, boat.width, boat.height);
 
@@ -42,16 +42,12 @@ document.addEventListener("DOMContentLoaded", function() {
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(boat.number, centerX, centerY);
-
-            // Voeg het aantal resterende stappen direct naast de boot toe
-            ctx.font = "14px Arial";
-            ctx.fillText(`Stappen: ${clicksRemaining[index]}`, centerX, centerY + 25);
         });
     }
 
     // Functie om een boot te bewegen
     function moveBoat(boatIndex) {
-        if (clicksRemaining[boatIndex] > 0 && !raceFinished) {
+        if (!raceFinished) {
             boats[boatIndex].x += (canvasWidth - 100) / numClicks;
             clicksRemaining[boatIndex]--;
             drawField();
